@@ -1,5 +1,4 @@
-def inverted(слово):
-    return ''.join(reversed(слово))
+def inverted(word):
+    return ''.join(reversed(word))
 
 print(inverted("привет"))  
-пулариквест в ветке мейн 
