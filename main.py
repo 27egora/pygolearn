@@ -1,6 +1,7 @@
 def inverted(word):
-    is_palindrome = word == word[::-1]
-    return ''.join(reversed(word)), is_palindrome
+    reversed_word = ''.join(reversed(word))
+    return reversed_word, word == reversed_word
 
 print(inverted("привет"))
 print(inverted("топот"))
+
