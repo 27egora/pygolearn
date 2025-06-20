@@ -2,18 +2,22 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"slices"
 )
 
 func main() {
-	fmt.Println(ReverseString("привет"))
-	fmt.Println(ReverseString("👋🌍"))
-	fmt.Println(ReverseString("топот"))
+	args := os.Args
+	if len(args) > 1 {
+		arg1 := args[1]
+		reversed, isPalindrome := ReverseString(arg1)
+		fmt.Println(arg1, reversed, isPalindrome)
+	}
 }
 
-func ReverseString(s string) (string, bool) { // исходное слово
-	runes := []rune(s)    // слово в слайс ["_", "_", "_", "_" ...]
-	slices.Reverse(runes) // переворот слова
+func ReverseString(s string) (string, bool) {
+	runes := []rune(s)
+	slices.Reverse(runes)
 	reversed := string(runes)
 	return reversed, s == reversed
 }
