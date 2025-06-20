@@ -11,7 +11,11 @@ func main() {
 	if len(args) > 1 {
 		arg1 := args[1]
 		reversed, isPalindrome := ReverseString(arg1)
-		fmt.Println(arg1, reversed, isPalindrome)
+		fmt.Println("Исходное слово:", arg1)
+		fmt.Println("Перевернутое:", reversed)
+		fmt.Println("Палиндром:", isPalindrome)
+	} else {
+		fmt.Println("Указать ОДНО слово в качестве аргумента!")
 	}
 }
 
