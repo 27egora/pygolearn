@@ -8,7 +8,7 @@ import (
 
 func main() {
 	args := os.Args
-	if len(args) > 1 {
+	if len(args) == 2 {
 		arg1 := args[1]
 		reversed, isPalindrome := ReverseString(arg1)
 		fmt.Println("Исходное слово:", arg1)
