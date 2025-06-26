@@ -2,21 +2,36 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"slices"
+
+	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	args := os.Args
-	if len(args) == 2 {
-		arg1 := args[1]
-		reversed, isPalindrome := ReverseString(arg1)
-		fmt.Println("Исходное слово:", arg1)
-		fmt.Println("Перевернутое:", reversed)
-		fmt.Println("Палиндром:", isPalindrome)
-	} else {
-		fmt.Println("Указать ОДНО слово в качестве аргумента!")
+	router := gin.Default()
+	router.GET("/", GetHandler)
+	router.POST("/", PostHandler)
+	router.Run("localhost:8080")
+}
+
+func GetHandler(c *gin.Context) {
+	text := c.Query("text") // параметр из самой ссылки локалхоста
+	a, isPalindrome := ReverseString(text)
+	txtColor := "green"
+	if isPalindrome {
+		txtColor = "red"
 	}
+	a = fmt.Sprintf(`<h1 style="color: %s">%s</h1>`, txtColor, a)
+	c.String(http.StatusOK, a) // вернутое значение
+
+}
+
+func PostHandler(c *gin.Context) {
+	text := c.PostForm("text") // принимает параметр из тела POST-запроса
+	a, _ := ReverseString(text)
+	c.String(http.StatusOK, a) // возвращает перевернутую строку как plain text
 }
 
 func ReverseString(s string) (string, bool) {
