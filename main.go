@@ -12,7 +12,8 @@ import (
 func main() {
 	router := gin.Default()
 	router.GET("/", GetHandler)
-	router.POST("/", PostHandler)
+	router.POST("/", FormHandler)
+	router.PUT("/", PutHandler)
 	router.Run("localhost:8080")
 }
 
@@ -28,10 +29,19 @@ func GetHandler(c *gin.Context) {
 
 }
 
-func PostHandler(c *gin.Context) {
-	text := c.PostForm("text") // принимает параметр из тела POST-запроса
-	a, _ := ReverseString(text)
-	c.String(http.StatusOK, a) // возвращает перевернутую строку как plain text
+func FormHandler(c *gin.Context) {
+	text := c.PostForm("text")
+	a, isPalindrome := ReverseString(text)
+	txtColor := "blue"
+	if isPalindrome {
+		txtColor = "red"
+	}
+	a = fmt.Sprintf(`<h1 style="color: %s">%s</h1>`, txtColor, a)
+	c.String(http.StatusOK, a)
+}
+
+func PutHandler(c *gin.Context) {
+
 }
 
 func ReverseString(s string) (string, bool) {
