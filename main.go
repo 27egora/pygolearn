@@ -9,6 +9,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type ReverseTextResponse struct {
+	Text         string `json:"text"`
+	IsPalindrome bool   `json:"isPalindrome"`
+}
+
 func main() {
 	router := gin.Default()
 	router.GET("/", GetHandler)
@@ -41,7 +46,18 @@ func FormHandler(c *gin.Context) {
 }
 
 func PutHandler(c *gin.Context) {
+	var body ReverseTextResponse
+	if err := c.BindJSON(&body); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ivalid body"})
+		return
+	}
+	reversed, isPalindrome := ReverseString(body.Text)
 
+	response := ReverseTextResponse{
+		Text:         reversed,
+		IsPalindrome: isPalindrome,
+	}
+	c.JSON(http.StatusOK, response)
 }
 
 func ReverseString(s string) (string, bool) {
