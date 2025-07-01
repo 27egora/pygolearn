@@ -7,7 +7,7 @@ def inverted(word):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
+    if len(sys.argv) == 1:
         word = sys.argv[1]
         reversed_word, is_palindrome = inverted(word)
         print(f"Исходное слово: {word}") 

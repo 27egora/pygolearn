@@ -2,21 +2,62 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"slices"
+
+	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
+type ReverseTextResponse struct {
+	Text         string `json:"text"`
+	IsPalindrome bool   `json:"isPalindrome"`
+}
+
 func main() {
-	args := os.Args
-	if len(args) > 1 {
-		arg1 := args[1]
-		reversed, isPalindrome := ReverseString(arg1)
-		fmt.Println("Исходное слово:", arg1)
-		fmt.Println("Перевернутое:", reversed)
-		fmt.Println("Палиндром:", isPalindrome)
-	} else {
-		fmt.Println("Указать ОДНО слово в качестве аргумента!")
+	router := gin.Default()
+	router.GET("/", GetHandler)
+	router.POST("/", FormHandler)
+	router.PUT("/", PutHandler)
+	router.Run("localhost:8080")
+}
+
+func GetHandler(c *gin.Context) {
+	text := c.Query("text") // параметр из самой ссылки локалхоста
+	a, isPalindrome := ReverseString(text)
+	txtColor := "green"
+	if isPalindrome {
+		txtColor = "red"
 	}
+	a = fmt.Sprintf(`<h1 style="color: %s">%s</h1>`, txtColor, a)
+	c.String(http.StatusOK, a) // вернутое значение
+
+}
+
+func FormHandler(c *gin.Context) {
+	text := c.PostForm("text")
+	a, isPalindrome := ReverseString(text)
+	txtColor := "blue"
+	if isPalindrome {
+		txtColor = "red"
+	}
+	a = fmt.Sprintf(`<h1 style="color: %s">%s</h1>`, txtColor, a)
+	c.String(http.StatusOK, a)
+}
+
+func PutHandler(c *gin.Context) {
+	var body ReverseTextResponse
+	if err := c.BindJSON(&body); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ivalid body"})
+		return
+	}
+	reversed, isPalindrome := ReverseString(body.Text)
+
+	response := ReverseTextResponse{
+		Text:         reversed,
+		IsPalindrome: isPalindrome,
+	}
+	c.JSON(http.StatusOK, response)
 }
 
 func ReverseString(s string) (string, bool) {
