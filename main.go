@@ -30,7 +30,13 @@ func GetHandler(c *gin.Context) {
 		txtColor = "red"
 	}
 	a = fmt.Sprintf(`<h1 style="color: %s">%s</h1>`, txtColor, a)
-	c.String(http.StatusOK, a) // вернутое значение
+
+	// Возвращаем 304 для палиндромов, иначе 200
+	if isPalindrome {
+		c.String(http.StatusNotModified, a)
+	} else {
+		c.String(http.StatusOK, a)
+	}
 
 }
 
@@ -42,7 +48,13 @@ func FormHandler(c *gin.Context) {
 		txtColor = "red"
 	}
 	a = fmt.Sprintf(`<h1 style="color: %s">%s</h1>`, txtColor, a)
-	c.String(http.StatusOK, a)
+
+	// Возвращаем 304 для палиндромов, иначе 200
+	if isPalindrome {
+		c.String(http.StatusNotModified, a)
+	} else {
+		c.String(http.StatusOK, a)
+	}
 }
 
 func PutHandler(c *gin.Context) {
@@ -57,7 +69,11 @@ func PutHandler(c *gin.Context) {
 		Text:         reversed,
 		IsPalindrome: isPalindrome,
 	}
-	c.JSON(http.StatusOK, response)
+	if isPalindrome {
+		c.JSON(http.StatusNotModified, response)
+	} else {
+		c.JSON(http.StatusOK, response)
+	}
 }
 
 func ReverseString(s string) (string, bool) {
