@@ -24,7 +24,7 @@ func main() {
 
 func getStatusCode(isPalindrome bool) int {
 	if isPalindrome {
-		return http.StatusNotModified
+		return http.StatusAccepted
 	}
 	return http.StatusOK
 }
@@ -66,11 +66,7 @@ func PutHandler(c *gin.Context) {
 		Text:         reversed,
 		IsPalindrome: isPalindrome,
 	}
-	if isPalindrome {
-		c.JSON(http.StatusNotModified, response)
-	} else {
-		c.JSON(http.StatusOK, response)
-	}
+	c.JSON(getStatusCode(isPalindrome), response)
 }
 
 func ReverseString(s string) (string, bool) {
