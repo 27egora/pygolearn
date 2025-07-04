@@ -22,6 +22,13 @@ func main() {
 	router.Run("localhost:8080")
 }
 
+func getStatusCode(isPalindrome bool) int {
+	if isPalindrome {
+		return http.StatusNotModified
+	}
+	return http.StatusOK
+}
+
 func GetHandler(c *gin.Context) {
 	text := c.Query("text") // параметр из самой ссылки локалхоста
 	a, isPalindrome := ReverseString(text)
@@ -31,12 +38,7 @@ func GetHandler(c *gin.Context) {
 	}
 	a = fmt.Sprintf(`<h1 style="color: %s">%s</h1>`, txtColor, a)
 
-	// Возвращаем 304 для палиндромов, иначе 200
-	if isPalindrome {
-		c.String(http.StatusNotModified, a)
-	} else {
-		c.String(http.StatusOK, a)
-	}
+	c.String(getStatusCode(isPalindrome), a)
 
 }
 
@@ -49,12 +51,7 @@ func FormHandler(c *gin.Context) {
 	}
 	a = fmt.Sprintf(`<h1 style="color: %s">%s</h1>`, txtColor, a)
 
-	// Возвращаем 304 для палиндромов, иначе 200
-	if isPalindrome {
-		c.String(http.StatusNotModified, a)
-	} else {
-		c.String(http.StatusOK, a)
-	}
+	c.String(getStatusCode(isPalindrome), a)
 }
 
 func PutHandler(c *gin.Context) {
