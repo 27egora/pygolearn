@@ -1,0 +1,16 @@
+[
+  {
+    "text": "АБЫРВАЛГ",
+    "result": {
+      "value": "ГЛАВРЫБА",
+      "isPalindrome": false
+    }
+  },
+  {
+    "text": "топот",
+    "result": {
+      "value": "ТОПОТ",
+      "isPalindrome": true
+    }
+  }
+]
