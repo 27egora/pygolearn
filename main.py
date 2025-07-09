@@ -18,7 +18,7 @@ def put_handler():
 
 @app.route('/', methods=['GET'])
 def get_handler():
-    text = request.form.get('text', '')
+    text = request.args.get('text', '')
     reversed_text, is_palindrome = inverted(text)
     text_color = "red" if is_palindrome else "green"
     html_reponse = f'<h1 style = "color: {text_color}">{reversed_text}</h1>'
