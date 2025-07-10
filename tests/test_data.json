@@ -2,14 +2,14 @@
   {
     "text": "АБЫРВАЛГ",
     "result": {
-      "value": "ГЛАВРЫБА",
+      "text": "ГЛАВРЫБА",
       "isPalindrome": false
     }
   },
   {
     "text": "топот",
     "result": {
-      "value": "ТОПОТ",
+      "text": "ТОПОТ",
       "isPalindrome": true
     }
   }
