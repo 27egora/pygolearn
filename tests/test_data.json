@@ -1,0 +1,58 @@
+[
+  {
+    "text": "АБЫРВАЛГ",
+    "result": {
+      "text": "ГЛАВРЫБА",
+      "isPalindrome": false
+    }
+  },
+  {
+    "text": "топот",
+    "result": {
+      "text": "ТОПОТ",
+      "isPalindrome": true
+    }
+  },
+  {
+    "text": "арзбуз",
+    "result": {
+      "text": "ЗУБРА",
+      "isPalindrome": false
+    }
+  },
+  {
+    "text": "потоп",
+    "result": {
+      "text": "ПОТОП",
+      "isPalindrome": true
+    }
+  }
+    {
+    "text": "ПОЛИЦИЯ",
+    "result": {
+      "text": "ЯИЦИЛОП",
+      "isPalindrome": false
+    }
+  },
+  {
+    "text": "комок",
+    "result": {
+      "text": "КОМОК",
+      "isPalindrome": true
+    }
+  },
+  {
+    "text": "йогурт",
+    "result": {
+      "text": "ТРУГОЙ",
+      "isPalindrome": false
+    }
+  },
+  {
+    "text": "радар",
+    "result": {
+      "text": "РАДАР",
+      "isPalindrome": true
+    }
+  }
+]
