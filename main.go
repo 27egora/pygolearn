@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"slices"
-
 	"net/http"
+	"slices"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -70,8 +70,9 @@ func PutHandler(c *gin.Context) {
 }
 
 func ReverseString(s string) (string, bool) {
-	runes := []rune(s)
+	uppercase := strings.ToUpper(s) //нормализация строки в верхний регистр
+	runes := []rune(uppercase)
 	slices.Reverse(runes)
 	reversed := string(runes)
-	return reversed, s == reversed
+	return reversed, uppercase == reversed
 }

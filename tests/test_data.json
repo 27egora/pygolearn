@@ -14,7 +14,7 @@
     }
   },
   {
-    "text": "арзбуз",
+    "text": "арбуз",
     "result": {
       "text": "ЗУБРА",
       "isPalindrome": false
@@ -26,8 +26,8 @@
       "text": "ПОТОП",
       "isPalindrome": true
     }
-  }
-    {
+  },
+  {
     "text": "ПОЛИЦИЯ",
     "result": {
       "text": "ЯИЦИЛОП",
