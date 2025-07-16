@@ -17,5 +17,8 @@
 - [x] Веб-сервер, принимающий GET-параметр и возвращающий HTML-ответ (Go);
 - [x] Веб-сервер, принимающий POST-параметр и возвращающий JSON-ответ (Go);
 - [x] Обработка палиндрома в GET/POST запросах (Go);
-- [ ] Тест в Postman, проверяющий работу POST-запроса.
-- [ ] Повторить веб-сервер на Python ([Flask](https://flask.palletsprojects.com/en/stable/quickstart/#a-minimal-application));
+- [x] Тест в Postman, проверяющий работу POST-запроса.
+- [x] Повторить веб-сервер на Python ([Flask](https://flask.palletsprojects.com/en/stable/quickstart/#a-minimal-application));
+- [ ] Валидация входящей строки по [регулярному выражению](https://regex101.com/r/DVy4BS) (Go/Python)
+- [ ] Объединить «декоративные» GET|POST-методы в один обработчик (Go);
+- [ ] Объединить «декоративные» GET|POST-методы в один обработчик (Python).
