@@ -32,7 +32,7 @@ def web_handler():
     if len(text) > 50:
         abort(400, "Текст слишком длинный (максимум 50 символов)")
     if not TEXT_REGEX.match(text):
-        abort(400, "Текст может содержать только буквы и цифры")
+        abort(400, "Текст может содержать только буквы и пробелы")
     
     reversed_text, is_palindrome = inverted(text)
     
