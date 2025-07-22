@@ -35,7 +35,7 @@ func validateText(text string) error {
 		return fmt.Errorf("текст слишком длинный (максимум 50 символов)")
 	}
 	if !textRegex.MatchString(text) {
-		return fmt.Errorf("текст может содержать только буквы, цифры и пробелы")
+		return fmt.Errorf("текст может содержать только буквы и пробелы")
 	}
 	return nil
 }
